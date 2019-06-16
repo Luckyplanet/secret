@@ -1,0 +1,27 @@
+<h1>Secret Codes</h1>
+<div class="row">
+    <%= form_with scope: :secret_code, local: true do |form| %>
+            <div class="col-sm-6">
+            <%= form.label :select_number %><br>
+            <%= form.select :code, [1,10, 20,50,100], :selected => 10 %>
+        </div>
+        <div class="col-sm-6">
+            <%= form.submit :Generate %>
+        </div>
+    <% end %>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Code</th>
+    <th>User</th>
+    <th></th>
+  </tr>
+ 
+  <% @secrets.each do |secret| %>
+    <tr>
+      <td><%= secret.code %></td>
+      <td><%= secret.user_id.nil? ? "none given" : secret.user.email %></td>
+    </tr>
+  <% end %>
+</table>
